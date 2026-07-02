@@ -1,0 +1,279 @@
+:root {
+  --bg: #14181F;
+  --panel: #1B2029;
+  --panel-border: #2A303C;
+  --text: #EDEFF2;
+  --text-dim: #8A93A3;
+  --green: #2FA37B;
+  --amber: #D9A441;
+  --rose: #E0645A;
+  --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --sans: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.5;
+}
+
+/* --- Ticker tape (signature element) --- */
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  background: #0F131A;
+  border-bottom: 1px solid var(--panel-border);
+  padding: 10px 0;
+}
+
+.ticker {
+  display: inline-flex;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  animation: scroll-ticker 28s linear infinite;
+  padding-left: 100%;
+}
+
+.ticker span {
+  margin-right: 2.5rem;
+}
+
+.ticker .up { color: var(--green); }
+
+@keyframes scroll-ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker { animation: none; padding-left: 0; }
+}
+
+/* --- Layout --- */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.page__header .eyebrow {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.5rem;
+}
+
+.page__header h1 {
+  font-family: var(--mono);
+  font-size: 2.75rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  margin: 0 0 2rem;
+}
+
+/* --- Total card --- */
+.total-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background: linear-gradient(135deg, #1B2029, #171B23);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.total-card__label {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.total-card__value {
+  font-family: var(--mono);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* --- Grid --- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.panel h2 {
+  font-size: 1.05rem;
+  margin: 0 0 1rem;
+}
+
+.panel__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.panel__row h2 { margin: 0; }
+
+.panel__subheading {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin: 1.75rem 0 0.75rem;
+}
+
+/* --- Form --- */
+.add-form {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.add-form label {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 0.5rem;
+}
+
+.add-form select,
+.add-form input {
+  background: #10141B;
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 0.6rem 0.7rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+}
+
+.add-form select:focus,
+.add-form input:focus {
+  outline: 2px solid var(--amber);
+  outline-offset: 1px;
+}
+
+.add-form button {
+  margin-top: 1rem;
+  background: var(--amber);
+  color: #14181F;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-form button:hover { filter: brightness(1.08); }
+
+.form__error {
+  color: var(--rose);
+  font-size: 0.85rem;
+  min-height: 1.2em;
+  margin: 0.5rem 0 0;
+}
+
+/* --- Price list --- */
+.price-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+.price-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed var(--panel-border);
+  color: var(--text-dim);
+}
+
+.price-list li span:last-child { color: var(--text); }
+
+/* --- Holdings table --- */
+.export-btn {
+  background: transparent;
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.export-btn:hover { border-color: var(--amber); color: var(--amber); }
+
+.holdings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+}
+
+.holdings-table th {
+  text-align: left;
+  color: var(--text-dim);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.holdings-table td {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.holdings-table .empty-row td {
+  color: var(--text-dim);
+  font-family: var(--sans);
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--rose);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+}
+
+.remove-btn:hover { text-decoration: underline; }
+
+/* --- Footer --- */
+.page__footer {
+  margin-top: 3rem;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  text-align: center;
+}

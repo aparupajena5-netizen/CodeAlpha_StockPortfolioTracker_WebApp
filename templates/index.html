@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledger — Stock Portfolio Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker" id="ticker"></div>
+</div>
+
+<main class="page">
+
+  <header class="page__header">
+    <div class="eyebrow">CodeAlpha · Python Internship · Task 2</div>
+    <h1>Ledger</h1>
+    <p class="subtitle">A running record of your simulated stock holdings.</p>
+  </header>
+
+  <section class="total-card">
+    <span class="total-card__label">Total investment value</span>
+    <span class="total-card__value" id="totalValue">$0</span>
+  </section>
+
+  <div class="grid">
+
+    <section class="panel">
+      <h2>Add a holding</h2>
+      <form id="addForm" class="add-form">
+        <label for="symbol">Symbol</label>
+        <select id="symbol" name="symbol" required></select>
+
+        <label for="quantity">Quantity</label>
+        <input id="quantity" name="quantity" type="number" min="1" step="1" placeholder="e.g. 10" required>
+
+        <button type="submit">Add to portfolio</button>
+        <p class="form__error" id="formError"></p>
+      </form>
+
+      <h3 class="panel__subheading">Reference prices</h3>
+      <ul class="price-list" id="priceList"></ul>
+    </section>
+
+    <section class="panel panel--holdings">
+      <div class="panel__row">
+        <h2>Holdings</h2>
+        <button class="export-btn" id="exportBtn">Export CSV</button>
+      </div>
+
+      <table class="holdings-table">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Value</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="holdingsBody">
+          <tr class="empty-row"><td colspan="5">No holdings yet — add your first stock.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <footer class="page__footer">
+    Built for the CodeAlpha Python Programming Internship — Stock Portfolio Tracker (full-stack edition).
+  </footer>
+
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
